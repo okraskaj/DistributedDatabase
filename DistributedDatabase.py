@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, redirect, url_for, render_template, flash
+from flask import Flask, request, redirect, url_for, render_template, flash, send_from_directory
 from werkzeug.utils import secure_filename
 from test import make_tree
 
@@ -14,16 +14,9 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-
 app = Flask(__name__)
-#
-#
-# @app.route('/')
-# def hello_world():
-#
-#     return 'Hello World!'\
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/upload_file', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -42,8 +35,7 @@ def upload_file():
             print('---------')
             print()
             file.save(os.path.join(UPLOAD_FOLDER, filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+            return redirect(url_for('list'))
     return '''
     <!doctype html>
     <title>Upload new File</title>
@@ -53,12 +45,9 @@ def upload_file():
          <input type=submit value=Upload>
     </form>
     '''
-@app.route('/uploaded_file/<filename>')
-def uploaded_file(filename):
-    return filename
 
-
-@app.route('/lista')
+@app.route('/')
+@app.route('/list')
 def list():
     tree = make_tree(UPLOAD_FOLDER)
     print(tree)

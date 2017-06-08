@@ -3,9 +3,13 @@
 <h1>{{ tree.name }}</h1>
 <ul>
 {%- for item in tree.children recursive %}
-    <li><a href="{{ item.name }}">{{ item.name }}</a>
+{#    <li><a href="{{ item.name }}">{{ item.name }}</a>#}
+    <li>{{ item.name }}
     {%- if item.children -%}
-        <ul><a href="/static/{{ loop(item.children) }}">{{ loop(item.children) }}</a></ul>
+{#        <ul><a href="/static/{{ loop(item.children) }}">{{ loop(item.children) }}</a></ul>#}
+        <ul>{{ loop(item.children) }}</ul>
     {%- endif %}</li>
 {%- endfor %}
 </ul>
+
+<a href="{{ url_for('upload_file') }}"> Dodaj nowy plik </a>
