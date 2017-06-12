@@ -34,7 +34,7 @@ def local_database_table():
         shows beautifull table
     '''
     print(baza)
-    return render_template('global.html',database = baza, nodename =my_name)
+    return render_template('local.html',database = baza, nodename =my_name)
 
 @app.route('/globaldatabase')
 def global_database_table():
@@ -45,7 +45,7 @@ def global_database_table():
     global_dict.update(baza)
     global_dict.update(common.get_global_database(my_addres))
     print(global_dict)
-    return render_template('local.html',database = global_dict, nodename = "All cities")
+    return render_template('global.html',database = global_dict, nodename = "All cities")
 
 @app.route('/lastindex')
 def last_index():
