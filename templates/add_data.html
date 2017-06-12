@@ -1,0 +1,33 @@
+<!doctype html>
+
+<head>
+  <title>{{ nodename }} Local Database </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css">
+</head>
+
+<body>
+<nav class="navbar navbar-left">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Rozproszona Baza Danych</a>
+        </div>
+
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('add_data') }}">Add data <span class="sr-only">(current)</span></a></li>
+                <li><a href="{{ url_for('global_database_table') }}">Show Global Database</a></li>
+                <li><a href="{{ url_for('local_database_table') }}">Show Local Database</a></li>
+            </ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+    <form action="{{ url_for('add_data') }}" method="POST"  style="margin-right: auto; margin-left: auto; text-align: center">
+        <input type="text" name="Opis" size="40" placeholder="Zakup/sprzedaz">
+        <input type="number" name="Kwota" size="40" placeholder="0">
+        <input type="text" name="Dzial" size="40" placeholder="Finanse/Kadry/Rachunkowosc">
+        <input type="submit">
+    </form>
+</body>
